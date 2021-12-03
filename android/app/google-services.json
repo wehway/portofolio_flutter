@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "82215449686",
+    "project_id": "top-train",
+    "storage_bucket": "top-train.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:82215449686:android:88674e44a7e5a9d218f7f7",
+        "android_client_info": {
+          "package_name": "com.wehway.top_train"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "82215449686-q5jki5ct86ksl9s46rm6ftkmv6ad79ml.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBirXQQbHESjzqPfb3fN4vm1BUBOpsPg9M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "82215449686-q5jki5ct86ksl9s46rm6ftkmv6ad79ml.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
