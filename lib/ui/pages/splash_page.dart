@@ -1,28 +1,35 @@
 // ignore: duplicate_ignore
-// ignore_for_file: unused_import, duplicate_ignore
+// ignore_for_file: unused_import, duplicate_ignore, unused_local_variable, avoid_print
 
 import 'dart:async';
 
-import 'package:top_train/ui/pages/get_started_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-// ignore: unused_import
+import 'package:top_train/cubit/auth_cubit.dart';
 import '../../shared/theme.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SplashPage extends StatefulWidget {
-  const SplashPage({ Key? key }) : super(key: key);
+  const SplashPage({Key? key}) : super(key: key);
 
   @override
   State<SplashPage> createState() => _SplashPageState();
 }
 
 class _SplashPageState extends State<SplashPage> {
-
- @override
+  @override
   void initState() {
-    // ignore: todo
-    // TODO: implement initState
     Timer(Duration(seconds: 3), () {
-     Navigator.pushNamed(context, '/get-started');
+      User? user = FirebaseAuth.instance.currentUser;
+
+      if (user == null) {
+        Navigator.pushNamedAndRemoveUntil(
+            context, '/get-started', (route) => false);
+      } else {
+        print(user.email);
+        context.read<AuthCubit>().getCurrentUser(user.uid);
+        Navigator.pushNamedAndRemoveUntil(context, '/main', (route) => false);
+      }
     });
     super.initState();
   }
@@ -36,19 +43,20 @@ class _SplashPageState extends State<SplashPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              width: 100,
-              height: 100,
-              margin: EdgeInsets.only(bottom: 47),
-              decoration: BoxDecoration(
-                image: DecorationImage(image: AssetImage('assets/train.png'))
-              ,)
-            ),
-            Text('TOP TRAIN',
-            style: blackTextStyle.copyWith(
-              fontSize: 32,
-              fontWeight: medium,
-              letterSpacing: 10,
-            ),)
+                width: 100,
+                height: 100,
+                margin: EdgeInsets.only(bottom: 47),
+                decoration: BoxDecoration(
+                  image: DecorationImage(image: AssetImage('assets/train.png')),
+                )),
+            Text(
+              'TOP TRAIN',
+              style: blackTextStyle.copyWith(
+                fontSize: 32,
+                fontWeight: medium,
+                letterSpacing: 10,
+              ),
+            )
           ],
         ),
       ),
